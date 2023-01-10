@@ -1,0 +1,121 @@
+<p style="color: green"><%= notice %></p>
+
+<h1>我的订单(<%= @orders.size %>)</h1>
+<br>
+
+
+<div>
+<div id="cardBox">
+<div id="bodyBox", style="text-align: center">
+  <table style="border-spacing: 30px">
+    <tr style="text-align: center">
+      <td>订单编号</td>
+      <td>收货人</td>
+      <td>收件信息</td>
+      <td>订单状态</td>
+      <td>商品名称</td>
+      <td>下单时间</td>
+      <td>总额</td>
+      <td>操作</td>
+    </tr>
+    <% @orders.each do |order| %>
+    <tr>
+      <td style="text-align: center">
+        <%= order.id %>
+      </td>
+      <td style="text-align: center">
+        <strong><%= order.user.name %></strong><br>
+      </td>
+      <td>
+        <ul>
+          <li>收货地址: <%= order.address %></li>
+          <li>电话号码: <%= order.phone %></li>
+          <li>邮政编码: <%= order.post %></li>
+        </ul>
+      </td>
+      <td style="text-align: center">
+      <% if order.status == "待发货" %>
+        <div style="color: red">
+          <%= order.status %>
+        </div>
+      <%end%>
+      <% if order.status == "已发货" %>
+        <div style="color: blue">
+          <%= order.status %>
+        </div>
+      <%end%>
+      <% if order.status == "已收货" %>
+        <div style="color: orange">
+          <%= order.status %>
+        </div>
+      <%end%>
+      <% if order.status == "已取消" %>
+        <div style="color: gray">
+          <%= order.status %>
+        </div>
+      <%end%>
+      </td>
+      <td style="text-align: center">
+        <strong>
+          <%= Product.find(CartItem.find(order.item_id).product_id).name %>
+        </strong>
+        <br>
+        &times; <%= order.quantity%>
+      </td>
+      <td style="text-align: center">
+        <%= order.created_at %>
+      </td>
+      <td style="text-align: center">
+        <%= sprintf("￥%0.02f",order.total) %>
+      </td>
+      <td style="text-align: center">
+        <%= link_to "查看", order %> <br/>
+        <% if current_user && current_user.admin? %>
+          <% if order.status == "待发货" %>
+            <p>
+              <%= button_to "发货", change_status_orders_path(id: order.id) %>
+            </p>
+          <% elsif order.status == "已发货" %>
+            <p>
+              等待用户收货
+            </p>
+          <% elsif order.status == "已取消" %>
+            <p>
+              订单已取消
+            </p>
+          <% else %>
+            <p>
+              用户已收货
+            </p>
+          <%end%>
+        <%end%>
+        <% if current_user && !current_user.admin? %>
+          <% if order.status == "待发货" %>
+            <p>
+              耐心等待发货
+            </p>
+          <% elsif order.status == "已发货" %>
+            <p>
+              <%= button_to "确认收货", order, method: :delete %>
+            </p>
+          <% elsif order.status == "已取消" %>
+            <p>
+              订单已取消
+            </p>
+          <%else%>
+            <p>
+              订单已完成
+            </p>
+          <%end%>
+        <%end%>
+
+      </td>
+    </tr>
+    <% end %>
+  <table>
+</div>
+</div>
+</div>
+
+
+

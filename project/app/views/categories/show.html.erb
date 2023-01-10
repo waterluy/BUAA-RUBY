@@ -1,0 +1,11 @@
+<p style="color: green"><%= notice %></p>
+
+<%= render @category %>
+
+<div>
+  <%= link_to "修改", edit_category_path(@category) %> |
+  <%= link_to "返回类别管理", categories_path %>
+<br><br>
+  该类商品都会被删除<br>
+  <%= button_to "删除", @category, method: :delete %>
+</div>

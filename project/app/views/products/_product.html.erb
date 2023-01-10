@@ -1,0 +1,79 @@
+<div id="<%= dom_id product %>">
+  <div style="float: left; margin: 10px;" >
+    <div id="cardBox">
+      <div id="bodyBox">
+        <table id="wrap">
+          <tr>
+            <td width="200px">
+            <%= image_tag(product.image_url, height: "200", weight: "200")%>
+            </td>
+
+            <td style="text-align: center;">
+              <p>
+                <strong>名称: </strong>
+                <%= product.name %>
+              </p>
+            <br/>
+              <p>
+                <strong>描述: </strong>
+                <pre><%= product.description %></pre>
+              </p>
+            <br/>
+              <p>
+                <strong>销量: </strong>
+                <%= product.sales ? product.sales : 0 %>
+              </p>
+            
+              <p>
+                <strong>单价: </strong>
+                <%= product.price %>
+              </p>
+            
+              <p>
+                <strong>种类: </strong>
+                <%= product.category.name if product.category %>
+              </p>
+            
+              <p>
+                <strong>颜色: </strong>
+                <%= product.color.name if product.color %>
+              </p>
+            
+              <p>
+                <strong>尺寸: </strong>
+                <%= product.size.name if product.size %>
+              </p>
+              
+            </td>
+          </tr>
+        </table>
+      </div>
+    </div>
+  </div>
+  
+  <div style="float: left;  padding:30px">
+    <div id="cardBox">
+      <div id="bodyBox">
+        <h2>商品评价</h2> 
+          <% if product.comments.size == 0 %>
+            暂时还没有评论～
+          <%end%>
+          <div id="comments" width="500px">
+            <%= render :partial => product.comments %>
+          </div>
+      </div>
+    </div>
+    <br><br><br><br>
+    
+    <%= form_for [product, Comment.new] do |f| %>
+
+      <p>
+        <%= f.label :content, "提问或评价：" %> <br />
+        <%= f.text_area :content, :rows => 5, :placeholder => "内容为空则无法发布" %>
+      </p>
+      <p><%= f.submit "发布" %></p>
+    <% end %>
+
+  </div>
+
+</div>

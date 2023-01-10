@@ -1,0 +1,11 @@
+<p style="color: green"><%= notice %></p>
+
+<%= render @size %>
+
+<div>
+  <%= link_to "修改", edit_size_path(@size) %> |
+  <%= link_to "返回尺寸管理", sizes_path %>
+<br><br>
+  该类商品都会被删除<br>
+  <%= button_to "删除", @size, method: :delete %>
+</div>

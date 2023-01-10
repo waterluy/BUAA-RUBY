@@ -1,0 +1,12 @@
+<div id="<%= dom_id category %>">
+  <p>
+    <strong>类别: </strong>
+    <%= category.name %>
+  </p>
+
+  <p>
+    <b>该类商品: </b>
+    <%= (category.products.collect { |p| p.name }).join(", ") %>
+  </p>
+
+</div>

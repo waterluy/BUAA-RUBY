@@ -1,0 +1,15 @@
+<p style="color: green"><%= notice %></p>
+
+<h1>商品颜色</h1>
+
+<div id="colors">
+  <% @colors.each do |color| %>
+    <%= render color %>
+    <p>
+      <%= link_to "查看", color %>
+    </p>
+    <hr>
+  <% end %>
+</div>
+
+<%= link_to "新建", new_color_path %>

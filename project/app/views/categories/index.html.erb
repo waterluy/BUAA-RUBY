@@ -1,0 +1,15 @@
+<p style="color: green"><%= notice %></p>
+
+<h1>商品种类</h1>
+
+<div id="categories">
+  <% @categories.each do |category| %>
+    <%= render category %>
+    <p>
+      <%= link_to "查看", category %>
+    </p>
+    <hr>
+  <% end %>
+</div>
+
+<%= link_to "新建", new_category_path %>

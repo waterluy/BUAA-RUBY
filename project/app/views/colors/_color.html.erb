@@ -1,0 +1,12 @@
+<div id="<%= dom_id color %>">
+  <p>
+    <strong>名称:</strong>
+    <%= color.name %>
+  </p>
+
+  <p>
+    <b>该类商品: </b>
+    <%= (color.products.collect { |p| p.name }).join(", ") %>
+  </p>
+
+</div>

@@ -1,0 +1,9 @@
+<p style="color: green"><%= notice %></p>
+<h1>个人信息</h1>
+<%= render @user %>
+
+<div>
+  <%= link_to "修改信息", edit_user_path(@user) %> <br/><br/>
+
+  <%= button_to "注销账号", @user, method: :delete %>
+</div>

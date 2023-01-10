@@ -1,0 +1,11 @@
+<p style="color: green"><%= notice %></p>
+
+<%= render @color %>
+
+<div>
+  <%= link_to "修改", edit_color_path(@color) %> |
+  <%= link_to "返回颜色管理", colors_path %>
+<br><br>
+  该类商品都会被删除<br>
+  <%= button_to "删除", @color, method: :delete %>
+</div>

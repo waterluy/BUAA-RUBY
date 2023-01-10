@@ -1,0 +1,22 @@
+<%= form_with(model: size) do |form| %>
+  <% if size.errors.any? %>
+    <div style="color: red">
+      <h2><%= pluralize(size.errors.count, "error") %> prohibited this size from being saved:</h2>
+
+      <ul>
+        <% size.errors.each do |error| %>
+          <li><%= error.full_message %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div>
+    <%= form.label :name, '名称', style: "display: block" %>
+    <%= form.text_field :name %>
+  </div>
+<br/><br/>
+  <div>
+    <%= form.submit '保存'%>
+  </div>
+<% end %>

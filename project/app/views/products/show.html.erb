@@ -1,0 +1,14 @@
+<p style="color: green"><%= notice %></p>
+
+<%= render @product %>
+<br/><br/><br/><br/><br/><br/><br/><br/>
+<div>
+  <% if current_user && current_user.admin? %>
+    <%= link_to "编辑商品", edit_product_path(@product) %> |
+  <%end%>
+  <%= link_to "返回商品列表", products_path %>
+<br/><br/>
+  <% if current_user && current_user.admin? %>
+    <%= button_to "删除", @product, method: :delete %>
+  <%end%>
+</div>

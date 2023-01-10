@@ -1,0 +1,27 @@
+<h1>登录</h1>
+<div style="color:red">
+    <%= flash[:notice] %>
+</div><br/>
+
+<%= form_with url: do_login_users_path do %>
+    <fieldset>
+        <legend>欢迎登录</legend>
+<br/>
+        <div>
+            <label for="name">名称: </label>
+            <%= text_field_tag :name, params[:name] %>
+        </div>
+<br/>
+        <div>
+            <label for="password">密码: </label>
+            <%= password_field_tag :password, params[:password] %>
+        </div>
+<br/><br/>
+        <div>
+            <%= submit_tag "登录"%>
+        </div>
+    </fieldset>
+<% end %>
+
+<br/>
+<%= link_to "没有账号,去注册", new_user_path %>

@@ -1,0 +1,12 @@
+<div id="<%= dom_id size %>">
+  <p>
+    <strong>名称: </strong>
+    <%= size.name %>
+  </p>
+
+  <p>
+    <b>该类商品: </b>
+    <%= (size.products.collect { |p| p.name }).join(", ") %>
+  </p>
+
+</div>

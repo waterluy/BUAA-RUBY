@@ -1,0 +1,43 @@
+<div id="<%= dom_id cart %>" >   
+    <% if cart.cart_items.size == 0 %>
+        <h3>购物车是空的，去首页添加喜欢的商品吧 ~</h3>
+    <%end%>
+    <hr>
+    <table style="border-spacing: 30px">
+        <% cart.cart_items.each do |ci| %>
+        
+        <tr>
+            <td width="400px">
+            <div id="cardBox">
+            <div id="bodyBox">
+                <h3 style="text-align: center">
+                    <%= ci.product.name%> &times; <%= ci.quantity %>
+                </h3>
+                <ul>
+                    <li>颜色 <%= ci.product.color.name %></li>
+                    <li>尺寸 <%= ci.product.size.name %></li>
+                    <li>单价 <%= sprintf("￥%0.02f", ci.product.price) %></li>
+                </ul>
+            </div>
+            </div>
+            </td>
+            
+            <td style="text-align: center">
+            <div id="cardBox">
+            <div id="bodyBox">
+                <%= link_to '查看', product_url(ci.product)%>
+                <br>
+                <%= button_to '删除', ci, :method => :delete, :confirm => '确认删除吗?'%>
+                <br/>
+                <%= sprintf("￥%0.02f", ci.total_price)%><br/>
+                <%= link_to '付款', new_order_path(:item_id => ci.id)  %>
+            </div>
+            </div>
+            </td>
+        </tr>
+        
+        
+        <%end%>
+    </table> 
+    <hr>  
+</div>

@@ -1,0 +1,84 @@
+/*
+ * This is a manifest file that'll be compiled into application.css, which will include all the files
+ * listed below.
+ *
+ * Any CSS (and SCSS, if configured) file within this directory, lib/assets/stylesheets, or any plugin's
+ * vendor/assets/stylesheets directory can be referenced here using a relative path.
+ *
+ * You're free to add application-wide styles to this file and they'll appear at the bottom of the
+ * compiled file so the styles you add here take precedence over styles defined in any other CSS
+ * files in this directory. Styles in this file should be added after the last require_* statement.
+ * It is generally better to create a new file per style scope.
+ *
+ *= require_tree .
+ *= require_self
+ */
+
+
+pre { /*/ 兼容多个浏览器*/
+  white-space: pre-wrap;
+  white-space: -moz-pre-wrap;
+  white-space: -pre-wrap;
+  white-space: -o-pre-wrap;
+  *word-wrap: break-word;
+  *white-space : normal ;
+}
+
+ #wrap{
+  width: 600px; /*设置宽度*/
+  /*overflow: hidden; //超出隐藏*/
+  /*white-space: nowrap; //设置文字不换行*/
+  /*text-overflow: ellipsis;//超出显示...*/
+  
+  table-layout: fixed;
+  WORD-BREAK: break-all; 
+  WORD-WRAP: break-word
+}
+
+ #cardBox {
+  /*width: 200px;*/
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+  text-align: left;
+  float: left;
+  margin-right: 10px;
+  padding: 5px;
+  padding-top: 15px;
+}
+
+#headerBox {
+  color: #fff;
+  padding: 10px;
+  font-size: 15px;
+  height: 60px;
+}
+
+#bodyBox {
+  padding: 10px;
+}
+
+#bodyBox p {
+  margin-left: 5px;
+}
+
+#back {
+  background: url(/assets/bg.jpg) no-repeat;
+    background-size: 100% 100% ;
+    background-attachment: fixed;
+}
+
+
+ #left-panel {
+    float: left;
+    margin: 30px;
+  }
+  
+  #main-panel {
+    float: left;
+    border-left: 1px solid;
+    padding: 50px
+  }
+  
+  #footer {
+    clear: both
+  }
+  

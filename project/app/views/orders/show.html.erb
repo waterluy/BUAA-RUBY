@@ -1,0 +1,22 @@
+<p style="color: green"><%= notice %></p>
+
+<%= render @order %>
+<% if current_user && !current_user.admin? %>
+  <div>
+    <%= link_to "修改订单", edit_order_path(@order) %> |
+    <%= link_to "我的订单", orders_path %>
+
+    <% if @order.status == "待发货" %>
+      <br/><br/>只有在发货前才能取消订单<br/>
+      <%= button_to "取消订单", @order, method: :delete %>
+    <%elsif @order.status == "已发货"%>
+      <br/>商品已经发货，不能取消订单<br/>
+    <%elsif @order.status == "已取消"%>
+      <br/>订单已取消<br/>
+    <%else%>
+      <br>订单已完成<br/>
+    <%end%>
+  </div>
+<%else%>
+  <br>不可修改订单<br/>
+<%end%>

@@ -1,0 +1,52 @@
+<%= form_with(model: user) do |form| %>
+  <% if user.errors.any? %>
+    <div style="color: red">
+      <h2><%= pluralize(user.errors.count, "error") %> prohibited this user from being saved:</h2>
+
+      <ul>
+        <% user.errors.each do |error| %>
+          <li><%= error.full_message %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div>
+    <%= form.label :name, "姓名", style: "display: block" %>
+    <%= form.text_field :name %>
+  </div>
+
+  <div>
+    <%= form.label :user_password, '密码', style: "display: block" %>
+    <%= form.password_field :password, :size => 40%>
+  </div>
+
+  <div>
+    <%= form.label :user_password_confirmation, '确认密码', style: "display: block" %>
+    <%= form.password_field :password_confirmation, :size => 40%>
+  </div>
+
+  <div>
+    <%= form.label :phone, "电话号码", style: "display: block" %>
+    <%= form.text_field :phone %>
+  </div>
+
+  <div>
+    <%= form.label  "邮箱", style: "display: block" %>
+    <%= form.email_field :email %>
+  </div>
+
+  <div>
+    <%= form.label :post, "邮政编码", style: "display: block" %>
+    <%= form.text_field :post %>
+  </div>
+
+  <div>
+    <%= form.label :description, "个人介绍", style: "display: block" %>
+    <%= form.text_area :description, rows: 5 %>
+  </div>
+
+  <div>
+    <%= form.submit '保存'%>
+  </div>
+<% end %>

@@ -1,0 +1,45 @@
+<h1>创建订单</h1>
+
+<%= form_with(model: @order) do |form| %>
+  <% if @order.errors.any? %>
+    <div style="color: red">
+      <h2><%= pluralize(@order.errors.count, "error") %> prohibited this order from being saved:</h2>
+
+      <ul>
+        <% @order.errors.each do |error| %>
+          <li><%= error.full_message %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div>
+    <%= form.label :address, '收货地址', style: "display: block" %>
+    <%= form.text_field :address %>
+  </div>
+
+  <div>
+    <%= form.label :phone, '电话号码', style: "display: block" %>
+    <%= form.text_field :phone %>
+  </div>
+
+  <div>
+    <%= form.label :post, '邮政编码', style: "display: block" %>
+    <%= form.text_field :post %>
+  </div>
+
+  <div>
+    待付款: <%= sprintf("￥%0.02f",CartItem.find(params[:item_id]).total_price)%>
+  </div>
+<br/>
+  <div>
+    <%= form.submit '生成订单'%>
+  </div>
+<% end %>
+
+
+<br/>
+
+<div>
+  <%= link_to "返回购物车", cart_path(current_cart) %>
+</div>

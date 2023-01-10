@@ -1,0 +1,20 @@
+<div id="<%= dom_id comment %>">
+  <p>
+    <strong>
+    <%= comment.user.name %>发布于<%= time_ago_in_words(comment.created_at) %> 前
+    </strong>
+  </p>
+
+<div width="400px" style="width: 300px; table-layout: fixed;WORD-BREAK: break-all; WORD-WRAP: break-word" >
+  <p>
+    <pre><%= comment.content %></pre>
+  </p>
+</div> 
+
+<br>
+<% if current_user && current_user.id == comment.user.id %>
+<%= button_to "删除", [comment.product, comment], method: :delete %>
+<%end%>
+  <hr>
+
+</div>

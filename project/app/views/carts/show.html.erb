@@ -1,0 +1,11 @@
+<p style="color: green"><%= notice %></p>
+<h1>购物车(<%= @cart.cart_items.size %>)</h1>
+<br/>
+<%= render @cart %>
+<br/>
+<div>
+  <%= button_to '清空购物车', @cart, :method => :delete, :confirm => '确认清空吗?'%>
+  <!--<%= link_to "Edit this cart", edit_cart_path(@cart) %> |
+  <%= link_to "Back to carts", carts_path %>
+  <%= button_to "Destroy this cart", @cart, method: :delete %>-->
+</div>

@@ -1,0 +1,56 @@
+<h1>注册</h1>
+
+<div class="form">
+  <%= form_for(@user) do |f|%>
+    <% if @user.errors.any? %>
+      <div style="color: red">
+        <h2><%= pluralize(@user.errors.count, "error") %> prohibited this user from being saved:</h2>
+
+        <ul>
+          <% @user.errors.each do |error| %>
+            <li><%= error.full_message %></li>
+          <% end %>
+        </ul>
+      </div>
+    <% end %>
+
+    <br/>
+
+    <fieldset>
+      <legend>输入用户信息</legend>
+<br/>
+除测试外，请勿注册管理员账号修改数据
+<br/><br/>
+      <div>
+        <%= f.label :role, '用户身份'%>
+        <%= f.select :role, ['买家', '管理员'] %>
+      </div>
+<br/>
+      <div>
+        <%= f.label :name, '名称'%>
+        <%= f.text_field :name, :size => 40%>
+      </div>
+<br/>
+      <div>
+        <%= f.label :user_password, '密码' %>
+        <%= f.password_field :password, :size => 40%>
+      </div>
+<br/>
+      <div>
+        <%= f.label :user_password_confirmation, '确认密码' %>
+        <%= f.password_field :password_confirmation, :size => 40%>
+      </div>
+<br/><br/>
+      <div>
+        <%= f.submit "注册", :class => "submit" %>
+      </div>
+
+    </fieldset>
+
+  <% end %>
+</div>
+
+
+<br/>
+<%= link_to "已有账号,去登录", login_users_path %>
+

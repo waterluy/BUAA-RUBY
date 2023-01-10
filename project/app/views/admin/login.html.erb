@@ -1,0 +1,21 @@
+<div>
+<% form_for do %>
+    <fieldset>
+        <legend>管理员登陆</legend>
+
+        <div>
+            <label for="name">名称: </label>
+            <%= text_field_tag :name, params[:name] %>
+        </div>
+
+        <div>
+            <label for="password">密码: </label>
+            <%= password_field_tag :password, params[:password] %>
+        </div>
+
+        <div>
+            <%= submit_tag "登陆"%>
+        </div>
+    </fieldset>
+<% end %>
+</div>

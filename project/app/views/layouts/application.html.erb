@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Project</title>
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <%= csrf_meta_tags %>
+    <%= csp_meta_tag %>
+
+    <%= stylesheet_link_tag "application", "data-turbo-track": "reload" %>
+    <%= javascript_importmap_tags %>
+  </head>
+
+  <body id="back">
+    <div id="banner">
+      <h1>简易电子商务系统</h1>
+    </div>
+    <div id="left-panel">
+      <% if current_user %>
+  			<%= current_user.name %> 登入系统 <br/>
+  			<%= link_to '登出', logout_users_path, method: :delete %>
+        <br/>
+        <%= link_to '个人主页', user_path(current_user)%>
+      <% else %>
+				<%= link_to '登录', login_users_path %> | 
+				<%= link_to '注册', new_user_path %>
+			<% end %>
+      <br/><br/>
+      <%= link_to "商品首页", products_path %>
+      <br/>
+      <% if current_user && !current_user.admin? %>
+        <%= link_to '我的购物车', cart_url(current_cart) %>
+        <br/>
+        <%= link_to '收藏夹', collects_url %>
+        <br/>
+      <%end%>
+      <% if current_user %>
+        <%= link_to '查看订单', orders_path %><br/>
+      <%end%>
+      <% if current_user && current_user.admin? %>
+        <br/>
+        <%= link_to '管理种类', categories_path %><br/>
+        <%= link_to '管理颜色', colors_path %><br/>
+        <%= link_to '管理尺寸', sizes_path %><br/>
+      <%end%>
+      
+    </div>
+
+    <div id="main-panel">
+      <%= yield %>
+    </div>
+
+    <div id="footer">
+    <br/><br/>
+      2023 万事胜意!
+    </div>
+  </body>
+</html>

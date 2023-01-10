@@ -1,0 +1,45 @@
+<div id="<%= dom_id order %>">
+  <p>
+    <strong>收货人: </strong>
+    <%= order.user.name %>
+  </p>
+
+  <p>
+    <strong>收货地址: </strong>
+    <%= order.address %>
+  </p>
+
+  <p>
+    <strong>电话号码: </strong>
+    <%= order.phone %>
+  </p>
+
+  <p>
+    <strong>邮政编码: </strong>
+    <%= order.post %>
+  </p>
+
+  <p>
+    <strong>订单状态: </strong>
+    <%= order.status %>
+  </p>
+  <p>
+    <strong>商品名称: </strong>
+    <%= Product.find(CartItem.find(order.item_id).product_id).name %>
+  </p>
+
+  <p>
+    <strong>下单时间: </strong>
+    <%= order.created_at %>
+  </p>
+
+  <p>
+    <strong>数量: </strong>
+    <%= order.quantity %>
+  </p>
+
+  <p>
+    <strong>总额: </strong>
+    <%= sprintf("￥%0.02f",order.total) %>
+  </p>
+</div>

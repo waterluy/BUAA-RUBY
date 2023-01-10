@@ -1,0 +1,73 @@
+<p style="color: green"><%= notice %></p>
+
+<h1>收藏夹(<%= current_user.collects.size %>)</h1>
+
+<% if current_user.collects.size == 0 %>
+  <h3>收藏夹是空的，去首页添加喜欢的商品吧 ~</h3>
+<%end%>
+
+<br/><br/>
+<hr>
+<div id="products" style="text-align: center">
+  <table style="border-spacing: 30px">
+    <tr>
+      <td> 图片 </td>
+      <td> 产品描述 </td>
+      <td> 颜色 </td>
+      <td> 尺寸 </td>
+      <td> 单价 </td>
+      <td> 销量 </td>
+      <td> 操作 </td>
+      
+    </tr>
+    
+    <% @collects.each do |collect| %>
+      <tr>
+
+        <td width="110px">
+          <%= image_tag(Product.find(collect.product_id).image_url, height: "150", weight: "150")%>
+        </td>        
+
+        <td class="list-description" width="300px">
+          <dl>
+            <h2><%= Product.find(collect.product_id).name %></h2>
+            <dt><%= truncate(Product.find(collect.product_id).description.gsub(/<.*?>/,''), :length => 30) %></dt>
+          </dl>
+        </td>
+
+        <td width="100px">
+          <%= Product.find(collect.product_id).color.name%> 
+        </td>
+
+        <td width="100px">
+          <%= Product.find(collect.product_id).size.name%> 
+        </td>
+
+        <td width="100px">
+          <%= sprintf("￥%0.02f", Product.find(collect.product_id).price) %> 
+        </td>
+
+        <td width="150px">
+          共售出 <%= Product.find(collect.product_id).sales ? Product.find(collect.product_id).sales : 0 %> 件
+        </td>
+
+        <td class="list-actions" width="150px">
+
+          <%= link_to "查看", Product.find(collect.product_id) %>
+          <br/><br/>
+          <%= button_to '取消收藏', collect, :method => :delete, :confirm => '确认删除吗?'%>
+
+          <br/>
+
+          <% if current_user && !current_user.admin?%>
+            <%= button_to "加入购物车", cart_items_path(:product_id => Product.find(collect.product_id))%>
+            <br/>
+          <%end%>         
+
+        </td>
+        
+      </tr>
+    <% end %>
+  </table>
+</div>
+<hr>

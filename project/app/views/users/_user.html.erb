@@ -1,0 +1,42 @@
+<div id="<%= dom_id user %>">
+  <p>
+    <strong>姓名: </strong>
+    <%= user.name %>
+  </p>
+
+  <!--<p>
+    <strong>Hashed password:</strong>
+    <%= user.hashed_password %>
+  </p>
+
+  <p>
+    <strong>Salt:</strong>
+    <%= user.salt %>
+  </p>-->
+
+  <p>
+    <strong>用户类型: </strong>
+    <%= user.role %>
+  </p>
+
+  <p>
+    <strong>电话号码: </strong>
+    <%= user.phone %>
+  </p>
+
+  <p>
+    <strong>邮箱: </strong>
+    <%= user.email%>
+  </p>
+
+  <p>
+    <strong>邮政编码: </strong>
+    <%= user.post %>
+  </p>
+
+  <p>
+    <strong>个人介绍: </strong>
+    <pre><%= user.description %></pre>
+  </p>
+
+</div>
