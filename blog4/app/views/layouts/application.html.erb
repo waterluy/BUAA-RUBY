@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Blog4</title>
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <%= csrf_meta_tags %>
+    <%= csp_meta_tag %>
+
+    <%= stylesheet_link_tag "application", "data-turbo-track": "reload" %>
+    <%= javascript_importmap_tags %>
+  </head>
+
+  <body>
+    <div id="banner">
+      <h1>My Blogs IV</h1>
+    </div>
+    <div id="left-panel">
+      <% if current_user %>
+  			<%= current_user.email %> Logged in.<br/>
+  			<%= link_to '修改密码', edit_registration_path(:user) %>
+  			<%= button_to '登出', destroy_user_session_path, method: :delete %>
+			<% else %>
+				<%= link_to '登陆', new_session_path(:user) %> | 
+				<%= link_to '注册', new_registration_path(:user) %>
+  			<!--Please <%= link_to '登陆', user_session_path %>-->
+			<% end %>
+    </div>
+
+    <div id="main-panel">
+      <%= yield %>
+    </div>
+
+    <div id="footer">
+      Copyright waterluy &copy; 2023
+    </div>
+
+  </body>
+</html>
