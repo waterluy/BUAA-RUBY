@@ -1,1 +1,1 @@
-# BUAA-RUBY 2022
+Ruby Programming Language course at BUAA
