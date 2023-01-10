@@ -1,0 +1,17 @@
+<div id="<%= dom_id recipe %>">
+  <p>
+    <strong>Title:</strong>
+    <%= recipe.title %>
+  </p>
+  
+  <p>
+    <strong>Categories:</strong>
+    <%= recipe.category.name if recipe.category %>
+  </p>
+  
+  <p>
+    <strong>Instrutions:</strong>
+    <%= recipe.instructions %>
+  </p>
+    
+</div>
